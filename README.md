@@ -1,62 +1,83 @@
-# Database Design Using the E-R Model
-
+# Diseño de bases de datos mediante el modelo E-R
 
 ![imagenModelo](./docs/modeloER.png)
 
+## Modelo
 
+Para este proyecto hemos creado un modelo entidad relación para una tienda, este modelo lo hemos dividido en cuatro entidades:
 
-# Modelo
+* Cliente
+* Producto
+* Pedido
+* Pago
 
-Para este proyecto hemos creado un modelo entidad relacion para una tienda Tendrá las siguientes entidades: 
+Cada una de estas entidades tendrá sus propios atributos y claves principales (Primary Key). Además, habrá relaciones entre estas entidades que tendrán sus propios atributos y roles en relaciones recursivas. Para ello hemos dividido las cuatro entidades con los siguientes atributos:
 
-1. Cliente
-2. Producto
-3. Pedido
-4. Pago
-
-Cada una de estas entidades tendrá sus propios atributos y claves principales. Además, habrá relaciones entre estas entidades que tendrán sus propios atributos y roles en relaciones recursivas.
-
-La entidad Cliente tendrá los siguientes atributos: 
-- id (clave principal)
+**Entidad Cliente**
+```
+- id (Clave Principal)
 - nombre
 - apellido
-- correo electrónico
+- correo
 - dirección
-- número de teléfono
+- teléfono
+```
 
-La entidad Producto tendrá los siguientes atributos: 
-- id (clave principal)
+**Entidad Producto**
+```
+- id (Clave Principal)
 - nombre
 - descripción
 - precio
-- cantidad en stock
+- stock
+```
 
-La entidad Pedido tendrá los siguientes atributos: 
-- id (clave principal)
-- fecha de creación
-- fecha de envío
-- estado de la pedido
+**Entidad Pedido**
+```
+- id (Clave Principal)
+- fecha_creacion
+- fecha_envio
+- estado
+```
 
-# Relaciones
-
-La entidad Pago tendrá los siguientes atributos: 
-- id (clave principal)
-- método de pago
-- monto
-- fecha de pago
-
-La relación entre el Cliente y Pedido será de uno a muchos, ya que un cliente puede hacer varios pedidos. La relación tendrá los siguientes atributos: 
-- id del cliente (clave foránea)
-- id de la pedido (clave foránea)
-- fecha de creación
-- fecha de envío
-- estado de la pedido
-
-La relación entre Pedido y el Producto será de muchos a muchos, ya que una pedido puede tener varios productos y un producto puede estar en varios pedidos. La relación tendrá los siguientes atributos:
-- id de la pedido (clave foránea)
-- id del producto (clave foránea)
+**Entidad Pago**
+```
+- id (Clave Principal)
+- tipo_pago
 - cantidad
+- fecha_pago
+```
 
-La relación entre el pedido y el pago será de uno a uno, ya que un pedido tiene un solo pago. La relación tendrá los siguientes atributos:
-- id de la pedido (clave foránea)
-- id del pago (clave foránea)
+
+## Relaciones
+
+Una vez asignado los atributos a cada entidad, hemos realizado las siguientes relaciones:
+
+**Entidad Pago con Entidad Pedido**
+```
+- pagar
+```
+
+**Entidad Cliente con Entidad Pedido**
+```
+- pedir
+```
+
+**Entre Pedido con Entidad Producto**
+```
+- comprar
+```
+
+## Relación Cardinal
+
+Para las relaciones establecidas, hemos distribuido cada relación con las siguientes restricciones cardinales:
+
+```
+Pago 1..1:1..1 pagar | pagar 1..1:1..1 Pedido
+Producto 1..*:1..* comprar | comprar 1..*:1..* Pedido
+Pedido 1..1:1..* pedir | pedir 1..*:1..* Cliente
+```
+
+## Entidades Débiles
+
+En este diseño podemos encontrar también una entidad débil entre Pedido y Cliente, como se puede visualizar en "pedir"
