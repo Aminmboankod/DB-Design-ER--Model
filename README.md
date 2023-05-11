@@ -81,3 +81,14 @@ Pedido 1..1:1..* pedir | pedir 1..*:1..* Cliente
 ## Entidades Débiles
 
 En este diseño podemos encontrar también una entidad débil entre Pedido y Cliente, como se puede visualizar en "pedir"
+
+## Especialización
+
+Por último, pero no menos importante, hemos querido implementar la especialización, en este caso hemos añadido un "Disjoint" el cual explicamos a continuación:
+
+### Disjoint
+
+Hemos creado dos subentidades para la entidad **Cliente**, las cuales pasan por "tipo", esto permite elegir si un cliente es de tipo "Cliente Normal" o es de tipo "Cliente VIP" (nunca podrá ser de los dos tipos):
+
+* **Cliente Normal**
+* **Cliente VIP**
