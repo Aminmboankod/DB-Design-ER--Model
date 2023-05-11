@@ -1,6 +1,6 @@
 # Diseño de bases de datos mediante el modelo E-R
 
-![imagenModelo](./doc/modeloER.png)
+![imagenModelo](./doc/modeloER.jpg)
 
 ## Modelo
 
